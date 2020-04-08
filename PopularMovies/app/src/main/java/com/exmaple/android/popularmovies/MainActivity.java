@@ -1,0 +1,87 @@
+package com.exmaple.android.popularmovies;
+
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+
+import com.exmaple.android.popularmovies.adapter.RecyclerViewAdapter;
+import com.exmaple.android.popularmovies.data.Movie;
+import com.exmaple.android.popularmovies.utils.MovieDataJsonUtils;
+import com.exmaple.android.popularmovies.utils.NetworkUtils;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class MainActivity extends AppCompatActivity {
+
+    //TODO remove this api key when you publish your app
+    final private static String API_KEY =
+            "http://api.themoviedb.org/3/discover/movie?api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4";
+
+    RecyclerView mRecyclerView;
+    GridLayoutManager mGridLayoutManager;
+    RecyclerViewAdapter adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        URL url = null;
+        try {
+            url = new URL(API_KEY);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        new MovieDbQueryTask().execute(url);
+
+    }
+
+    public class MovieDbQueryTask extends AsyncTask<URL, Void, String[]> {
+
+        @Override
+        protected String[] doInBackground(URL... urls) {
+            Log.d("MainActivity", "doInBackground: ");
+            if (urls.length == 0) {
+                return null;
+            }
+
+            String[] movieImages = null;
+
+            URL url = urls[0];
+            try {
+                String responseFromHttpUrl = NetworkUtils.getResponseFromHttpUrl(url);
+                Movie[] movies = MovieDataJsonUtils.getStringsFromJson(MainActivity.this, responseFromHttpUrl);
+
+                movieImages = new String[movies.length];
+                String path = "http://image.tmdb.org/t/p/w185/";
+
+                for (int i = 0; i < movies.length; i++) {
+                    String imagePath = path + movies[i].getPoster_path();
+                    movieImages[i] = imagePath;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return movieImages;
+        }
+
+        @Override
+        protected void onPostExecute(String[] strings) {
+            super.onPostExecute(strings);
+            mRecyclerView = findViewById(R.id.rv_recyclerView);
+            mGridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+            mRecyclerView.setLayoutManager(mGridLayoutManager);
+            adapter = new RecyclerViewAdapter(MainActivity.this, strings);
+            mRecyclerView.setAdapter(adapter);
+        }
+    }
+
+
+
+}
