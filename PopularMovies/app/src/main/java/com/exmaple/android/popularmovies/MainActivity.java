@@ -41,43 +41,36 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public class MovieDbQueryTask extends AsyncTask<URL, Void, String[]> {
+    public class MovieDbQueryTask extends AsyncTask<URL, Void, Movie[]> {
 
         @Override
-        protected String[] doInBackground(URL... urls) {
+        protected Movie[] doInBackground(URL... urls) {
             Log.d("MainActivity", "doInBackground: ");
             if (urls.length == 0) {
                 return null;
             }
 
-            String[] movieImages = null;
-
             URL url = urls[0];
+
             try {
                 String responseFromHttpUrl = NetworkUtils.getResponseFromHttpUrl(url);
-                Movie[] movies = MovieDataJsonUtils.getStringsFromJson(MainActivity.this, responseFromHttpUrl);
+                Movie[] movies = MovieDataJsonUtils.getMoviesFromJson(MainActivity.this, responseFromHttpUrl);
 
-                movieImages = new String[movies.length];
-                String path = "http://image.tmdb.org/t/p/w185/";
-
-                for (int i = 0; i < movies.length; i++) {
-                    String imagePath = path + movies[i].getPoster_path();
-                    movieImages[i] = imagePath;
-                }
+                return movies;
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return movieImages;
+            return null;
         }
 
         @Override
-        protected void onPostExecute(String[] strings) {
-            super.onPostExecute(strings);
+        protected void onPostExecute(Movie[] movies) {
+            super.onPostExecute(movies);
             mRecyclerView = findViewById(R.id.rv_recyclerView);
             mGridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
             mRecyclerView.setLayoutManager(mGridLayoutManager);
-            adapter = new RecyclerViewAdapter(MainActivity.this, strings);
+            adapter = new RecyclerViewAdapter(MainActivity.this, movies);
             mRecyclerView.setAdapter(adapter);
         }
     }

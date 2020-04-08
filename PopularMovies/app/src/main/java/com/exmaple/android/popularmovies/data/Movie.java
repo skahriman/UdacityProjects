@@ -5,14 +5,16 @@ public class Movie {
     private String id;
     private String title;
     private String release_date;
+    private String backdrop_path;
     private String poster_path;
     private String vote_average;
     private String overview;
 
-    public Movie(String id, String title, String release_date, String poster_path, String vote_average, String overview) {
+    public Movie(String id, String title, String release_date, String backdrop_path, String poster_path, String vote_average, String overview) {
         this.id = id;
         this.title = title;
         this.release_date = release_date;
+        this.backdrop_path = backdrop_path;
         this.poster_path = poster_path;
         this.vote_average = vote_average;
         this.overview = overview;
@@ -40,5 +42,9 @@ public class Movie {
 
     public String getOverview() {
         return overview;
+    }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
     }
 }
