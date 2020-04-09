@@ -40,7 +40,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder viewHolder, final int i) {
         String image_path = "http://image.tmdb.org/t/p/w185/";
         image_path = image_path + movies[i].getPoster_path();
-        Picasso.get().load(image_path).into(viewHolder.image);
+        Picasso.get()
+                .load(image_path)
+                .placeholder(R.drawable.a)
+                .fit()
+                .into(viewHolder.image);
         viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

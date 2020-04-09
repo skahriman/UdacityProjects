@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.exmaple.android.popularmovies.adapter.RecyclerViewAdapter;
 import com.exmaple.android.popularmovies.data.Movie;
@@ -24,11 +25,18 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     GridLayoutManager mGridLayoutManager;
     RecyclerViewAdapter adapter;
+    ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mRecyclerView = findViewById(R.id.rv_recyclerView);
+        mGridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
+        mImageView = findViewById(R.id.iv_image);
 
         URL url = null;
         try {
@@ -67,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Movie[] movies) {
             super.onPostExecute(movies);
-            mRecyclerView = findViewById(R.id.rv_recyclerView);
-            mGridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-            mRecyclerView.setLayoutManager(mGridLayoutManager);
             adapter = new RecyclerViewAdapter(MainActivity.this, movies);
             mRecyclerView.setAdapter(adapter);
         }
