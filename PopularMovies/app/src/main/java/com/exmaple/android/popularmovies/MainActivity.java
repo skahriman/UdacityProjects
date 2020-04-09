@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO remove this api key when you publish your app
     final private static String API_KEY =
-            "http://api.themoviedb.org/3/discover/movie?api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4";
+            "https://api.themoviedb.org/3/discover/movie?api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4";
 
     RecyclerView mRecyclerView;
     GridLayoutManager mGridLayoutManager;
