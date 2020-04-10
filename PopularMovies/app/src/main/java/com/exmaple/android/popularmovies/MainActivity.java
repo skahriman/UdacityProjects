@@ -34,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mRecyclerView = findViewById(R.id.rv_recyclerView);
-        mGridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+        mGridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mImageView = findViewById(R.id.iv_image);
 

@@ -3,12 +3,15 @@ package com.exmaple.android.popularmovies;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 public class DetailsActivity extends AppCompatActivity {
+    private static final String TAG = "DetailsActivity";
+
     private TextView title;
     private ImageView image;
     private TextView releaseDate;
@@ -20,6 +23,8 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        Log.d(TAG, "onCreate: ");
         Intent intent = getIntent();
 
         title = findViewById(R.id.tv_title);
