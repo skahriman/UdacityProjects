@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.exmaple.android.popularmovies.adapter.RecyclerViewAdapter;
@@ -18,10 +20,13 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    //TODO remove this api key when you publish your app
-    final private static String API_KEY =
-            "https://api.themoviedb.org/3/discover/movie?api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4";
     private static final String TAG = "MainActivity";
+    //TODO remove this api key when you publish your app
+    final private static String MOVIE_URL =
+            "https://api.themoviedb.org/3/discover/movie?api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4";
+
+    private static final String MOVIE_URL_SORT = "http://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4&page=1";
+
 
     RecyclerView mRecyclerView;
     GridLayoutManager mGridLayoutManager;
@@ -41,13 +46,28 @@ public class MainActivity extends AppCompatActivity {
 
         URL url = null;
         try {
-            url = new URL(API_KEY);
+            url = new URL(MOVIE_URL);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         new MovieDbQueryTask().execute(url);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        URL url = null;
+        try {
+            url = new URL(MOVIE_URL_SORT);
+        } catch (MalformedURLException e) {
+        }
+        new MovieDbQueryTask().execute(url);
+        return true;
     }
 
     public class MovieDbQueryTask extends AsyncTask<URL, Void, Movie[]> {
