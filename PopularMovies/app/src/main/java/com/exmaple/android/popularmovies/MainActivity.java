@@ -22,11 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     //TODO remove this api key when you publish your app
-    final private static String MOVIE_URL =
-            "https://api.themoviedb.org/3/discover/movie?api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4";
-
-    private static final String MOVIE_URL_SORT = "http://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4&page=1";
-
 
     RecyclerView mRecyclerView;
     GridLayoutManager mGridLayoutManager;
@@ -46,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         URL url = null;
         try {
-            url = new URL(MOVIE_URL);
+            url = NetworkUtils.buildUrl();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -63,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         URL url = null;
         try {
-            url = new URL(MOVIE_URL_SORT);
+            url = NetworkUtils.buildUrlSorted();
         } catch (MalformedURLException e) {
         }
         new MovieDbQueryTask().execute(url);

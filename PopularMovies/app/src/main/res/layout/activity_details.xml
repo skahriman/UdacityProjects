@@ -45,6 +45,13 @@
             android:layout_below="@id/tv_releaseDate"
             android:layout_toRightOf="@id/iv_image_detail"
             android:textSize="30sp" />
+        <Button
+            android:id="@+id/btn_favorite"
+            android:layout_below="@id/tv_voteAverage"
+            android:layout_toRightOf="@id/iv_image_detail"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Mark as favorite" />
 
         <TextView
             android:id="@+id/tv_overView"
@@ -53,6 +60,8 @@
             android:layout_below="@id/iv_image_detail"
             android:layout_margin="5dp"
             android:textSize="15sp" />
+
+
     </RelativeLayout>
 
 </ScrollView>
