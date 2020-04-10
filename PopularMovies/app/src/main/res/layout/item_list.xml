@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_orange_dark"
-    android:id="@+id/linearLayout">
+    android:padding="16dp">
 
     <ImageView
-        android:background="@android:color/holo_blue_light"
         android:id="@+id/iv_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</FrameLayout>

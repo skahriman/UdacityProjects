@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.exmaple.android.popularmovies.adapter.RecyclerViewAdapter;
 import com.exmaple.android.popularmovies.data.Movie;
@@ -16,15 +17,17 @@ import com.exmaple.android.popularmovies.utils.NetworkUtils;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.ListItemClickListener{
 
     //TODO remove this api key when you publish your app
     final private static String API_KEY =
             "https://api.themoviedb.org/3/discover/movie?api_key=3ba8d51a5df2e04fe0ffedf1e9a8eec4";
+    private static final String TAG = "MainActivity";
 
     RecyclerView mRecyclerView;
     GridLayoutManager mGridLayoutManager;
     RecyclerViewAdapter adapter;
+
     ImageView mImageView;
 
     @Override
@@ -47,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
         new MovieDbQueryTask().execute(url);
 
+    }
+
+    @Override
+    public void onListItemClickListener(int clickedPosition) {
+        Log.d(TAG, "onListItemClickListener: ");
+        Toast.makeText(this, "item clicked #: " + clickedPosition, Toast.LENGTH_SHORT).show();
     }
 
     public class MovieDbQueryTask extends AsyncTask<URL, Void, Movie[]> {
@@ -75,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Movie[] movies) {
             super.onPostExecute(movies);
-            adapter = new RecyclerViewAdapter(MainActivity.this, movies);
+            adapter = new RecyclerViewAdapter(movies, MainActivity.this);
             mRecyclerView.setAdapter(adapter);
         }
     }
