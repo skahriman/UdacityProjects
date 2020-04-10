@@ -2,13 +2,13 @@ package com.exmaple.android.popularmovies.data;
 
 public class Movie {
 
-    private String id;
-    private String title;
-    private String release_date;
-    private String backdrop_path;
-    private String poster_path;
-    private String vote_average;
-    private String overview;
+    final private String id;
+    final private String title;
+    final private String release_date;
+    final private String backdrop_path;
+    final private String poster_path;
+    final private String vote_average;
+    final private String overview;
 
     public Movie(String id, String title, String release_date, String backdrop_path, String poster_path, String vote_average, String overview) {
         this.id = id;

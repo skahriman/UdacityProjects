@@ -1,7 +1,5 @@
 package com.exmaple.android.popularmovies.utils;
 
-import android.content.Context;
-
 import com.exmaple.android.popularmovies.data.Movie;
 
 import org.json.JSONArray;
@@ -9,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MovieDataJsonUtils {
-    public static Movie[] getMoviesFromJson(Context context, String movieJsonString) throws JSONException {
+    public static Movie[] getMoviesFromJson(String movieJsonString) throws JSONException {
 
         JSONObject movieJsonData = new JSONObject(movieJsonString);
 

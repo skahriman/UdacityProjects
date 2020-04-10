@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
-    private Movie[] movies;
+    final private Movie[] movies;
 
     public RecyclerViewAdapter(Movie[] images) {
         this.movies = images;
@@ -61,9 +61,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView image;
+        final private ImageView image;
 
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.iv_image);
             itemView.setOnClickListener(this);

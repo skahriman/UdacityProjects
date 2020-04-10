@@ -12,12 +12,7 @@ import com.squareup.picasso.Picasso;
 public class DetailsActivity extends AppCompatActivity {
     private static final String TAG = "DetailsActivity";
 
-    private TextView title;
-    private ImageView image;
-    private TextView releaseDate;
-    private TextView voteAverage;
-    private TextView overView;
-    String image_path = "http://image.tmdb.org/t/p/w185/";
+    private String image_path = "http://image.tmdb.org/t/p/w185/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +22,20 @@ public class DetailsActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: ");
         Intent intent = getIntent();
 
-        title = findViewById(R.id.tv_title);
-        image = findViewById(R.id.iv_image_detail);
-        releaseDate = findViewById(R.id.tv_releaseDate);
-        voteAverage = findViewById(R.id.tv_voteAverage);
-        overView = findViewById(R.id.tv_overView);
+        TextView title = findViewById(R.id.tv_title);
+        ImageView image = findViewById(R.id.iv_image_detail);
+        TextView releaseDate = findViewById(R.id.tv_releaseDate);
+        TextView voteAverage = findViewById(R.id.tv_voteAverage);
+        TextView overView = findViewById(R.id.tv_overView);
 
-        title.setText(intent.getStringExtra("title"));
-        image_path = image_path + intent.getStringExtra("poster_path");
+        title.setText(intent.getStringExtra(getString(R.string.title)));
+        image_path = image_path + intent.getStringExtra(getString(R.string.poster_path));
         Picasso.get().load(image_path).into(image);
-        releaseDate.setText(intent.getStringExtra("release_date"));
-        voteAverage.setText(intent.getStringExtra("vote_average")+"/10");
-        overView.setText(intent.getStringExtra("overView"));
-
+        releaseDate.setText(intent.getStringExtra(getString(R.string.release_date)));
+        overView.setText(intent.getStringExtra(getString(R.string.over_view)));
+        String vote_average = getString(R.string.vote_average);
+        String delimiter = getString(R.string.delimiter);
+        String average = intent.getStringExtra(vote_average) + delimiter;
+        voteAverage.setText(average);
     }
 }

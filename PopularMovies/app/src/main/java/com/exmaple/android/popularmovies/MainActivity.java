@@ -23,11 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     //TODO remove this api key when you publish your app
 
-    RecyclerView mRecyclerView;
-    GridLayoutManager mGridLayoutManager;
-    RecyclerViewAdapter adapter;
-
-    ImageView mImageView;
+    private RecyclerView mRecyclerView;
+    private ImageView mImageView;
+    private GridLayoutManager gridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = findViewById(R.id.rv_recyclerView);
-        mGridLayoutManager = new GridLayoutManager(this, 2);
-        mRecyclerView.setLayoutManager(mGridLayoutManager);
+        gridLayoutManager = new GridLayoutManager(this, 2);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
         mImageView = findViewById(R.id.iv_image);
 
         URL url = null;
@@ -58,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         URL url = null;
         try {
-            url = NetworkUtils.buildUrlSorted();
+            url = NetworkUtils.sortMovies(item.toString());
         } catch (MalformedURLException e) {
         }
         new MovieDbQueryTask().execute(url);
         return true;
     }
 
-    public class MovieDbQueryTask extends AsyncTask<URL, Void, Movie[]> {
+    private class MovieDbQueryTask extends AsyncTask<URL, Void, Movie[]> {
 
         @Override
         protected Movie[] doInBackground(URL... urls) {
@@ -78,9 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 String responseFromHttpUrl = NetworkUtils.getResponseFromHttpUrl(url);
-                Movie[] movies = MovieDataJsonUtils.getMoviesFromJson(MainActivity.this, responseFromHttpUrl);
 
-                return movies;
+                return MovieDataJsonUtils.getMoviesFromJson(responseFromHttpUrl);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -91,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Movie[] movies) {
             super.onPostExecute(movies);
-            adapter = new RecyclerViewAdapter(movies);
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(movies);
             mRecyclerView.setAdapter(adapter);
         }
     }
