@@ -16,15 +16,9 @@ import com.squareup.picasso.Picasso;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private Movie[] movies;
-    private ListItemClickListener mListItemClickListener;
 
-    public interface ListItemClickListener {
-        void onListItemClickListener(int clickedPosition);
-    }
-
-    public RecyclerViewAdapter(Movie[] images, ListItemClickListener listener) {
+    public RecyclerViewAdapter(Movie[] images) {
         this.movies = images;
-        this.mListItemClickListener = listener;
     }
 
     @NonNull
@@ -67,7 +61,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            mListItemClickListener.onListItemClickListener(adapterPosition);
             Movie movie = movies[adapterPosition];
             String title = movie.getTitle();
             String poster_path = movie.getPoster_path();

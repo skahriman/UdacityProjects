@@ -7,7 +7,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.exmaple.android.popularmovies.adapter.RecyclerViewAdapter;
 import com.exmaple.android.popularmovies.data.Movie;
@@ -17,7 +16,7 @@ import com.exmaple.android.popularmovies.utils.NetworkUtils;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.ListItemClickListener{
+public class MainActivity extends AppCompatActivity {
 
     //TODO remove this api key when you publish your app
     final private static String API_KEY =
@@ -52,12 +51,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
     }
 
-    @Override
-    public void onListItemClickListener(int clickedPosition) {
-        Log.d(TAG, "onListItemClickListener: ");
-        Toast.makeText(this, "item clicked #: " + clickedPosition, Toast.LENGTH_SHORT).show();
-    }
-
     public class MovieDbQueryTask extends AsyncTask<URL, Void, Movie[]> {
 
         @Override
@@ -84,11 +77,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         @Override
         protected void onPostExecute(Movie[] movies) {
             super.onPostExecute(movies);
-            adapter = new RecyclerViewAdapter(movies, MainActivity.this);
+            adapter = new RecyclerViewAdapter(movies);
             mRecyclerView.setAdapter(adapter);
         }
     }
-
-
 
 }
