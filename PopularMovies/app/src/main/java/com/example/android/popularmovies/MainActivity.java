@@ -1,30 +1,23 @@
-package com.exmaple.android.popularmovies;
+package com.example.android.popularmovies;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
-import com.exmaple.android.popularmovies.adapter.RecyclerViewAdapter;
-import com.exmaple.android.popularmovies.data.Movie;
-import com.exmaple.android.popularmovies.utils.MovieDataJsonUtils;
-import com.exmaple.android.popularmovies.utils.NetworkUtils;
+import com.example.android.popularmovies.adapter.RecyclerViewAdapter;
+import com.example.android.popularmovies.data.Movie;
+import com.example.android.popularmovies.utils.MovieDataJsonUtils;
+import com.example.android.popularmovies.utils.NetworkUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
-    //TODO remove this api key when you publish your app
-
     private RecyclerView mRecyclerView;
-    private ImageView mImageView;
     private GridLayoutManager gridLayoutManager;
 
     @Override
@@ -35,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.rv_recyclerView);
         gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
-        mImageView = findViewById(R.id.iv_image);
 
         URL url = null;
         try {
@@ -67,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Movie[] doInBackground(URL... urls) {
-            Log.d("MainActivity", "doInBackground: ");
             if (urls.length == 0) {
                 return null;
             }

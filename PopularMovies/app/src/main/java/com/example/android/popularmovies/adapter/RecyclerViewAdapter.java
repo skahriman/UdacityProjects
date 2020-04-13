@@ -1,5 +1,6 @@
-package com.exmaple.android.popularmovies.adapter;
+package com.example.android.popularmovies.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,15 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.exmaple.android.popularmovies.DetailsActivity;
-import com.exmaple.android.popularmovies.R;
-import com.exmaple.android.popularmovies.data.Movie;
+import com.example.android.popularmovies.DetailsActivity;
+import com.example.android.popularmovies.R;
+import com.example.android.popularmovies.data.Movie;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-
     private static final String TAG = "RecyclerViewAdapter";
+
     final private Movie[] movies;
 
     public RecyclerViewAdapter(Movie[] images) {
@@ -37,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder viewHolder, final int i) {
 
-        String image_path = "http://image.tmdb.org/t/p/w185/";
+        String image_path = viewHolder.image.getContext().getString(R.string.image_path);
         image_path = image_path + movies[i].getPoster_path();
         Picasso.get()
                 .load(image_path)
@@ -72,20 +73,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
+            Context context = view.getContext();
+
             Movie movie = movies[adapterPosition];
             String title = movie.getTitle();
             String poster_path = movie.getPoster_path();
             String release_date = movie.getRelease_date();
-            String year = (release_date.split("-"))[0];
+            String year = (release_date.split(context.getString(R.string.delimiter)))[0];
             String vote_average = movie.getVote_average();
             String overView = movie.getOverview();
 
             Intent intent = new Intent(view.getContext(), DetailsActivity.class);
-            intent.putExtra("title", title);
-            intent.putExtra("poster_path", poster_path);
-            intent.putExtra("release_date", year);
-            intent.putExtra("vote_average", vote_average);
-            intent.putExtra("overView", overView);
+
+            intent.putExtra(context.getString(R.string.title), title);
+            intent.putExtra(context.getString(R.string.backdrop_path), poster_path);
+            intent.putExtra(context.getString(R.string.release_date), year);
+            intent.putExtra(context.getString(R.string.vote_average), vote_average);
+            intent.putExtra(context.getString(R.string.over_view), overView);
             view.getContext().startActivity(intent);
         }
     }

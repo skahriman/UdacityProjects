@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/tv_releaseDate"
             android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:layout_below="@id/tv_title"
             android:layout_toEndOf="@id/iv_image_detail"
             android:textSize="30sp" />
@@ -42,13 +42,6 @@
             android:layout_below="@id/tv_releaseDate"
             android:layout_toEndOf="@id/iv_image_detail"
             android:textSize="30sp" />
-        <Button
-            android:id="@+id/btn_favorite"
-            android:layout_below="@id/tv_voteAverage"
-            android:layout_toEndOf="@id/iv_image_detail"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/favorite" />
 
         <TextView
             android:id="@+id/tv_overView"

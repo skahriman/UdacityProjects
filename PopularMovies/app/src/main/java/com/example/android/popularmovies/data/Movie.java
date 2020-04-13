@@ -1,7 +1,6 @@
-package com.exmaple.android.popularmovies.data;
+package com.example.android.popularmovies.data;
 
 public class Movie {
-
     final private String id;
     final private String title;
     final private String release_date;
@@ -19,11 +18,6 @@ public class Movie {
         this.vote_average = vote_average;
         this.overview = overview;
     }
-
-    public String getId() {
-        return id;
-    }
-
     public String getTitle() {
         return title;
     }

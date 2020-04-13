@@ -3,13 +3,14 @@
     <string name="top_rated">top_rated</string>
     <string name="popular">popular</string>
     <string name="backdrop_path">backdrop_path</string>
+    <string name="poster_path">poster_path</string>
     <string name="favorite">Mark as favorite</string>
     <string name="title">title</string>
-    <string name="poster_date">poster_path</string>
     <string name="release_date">release_date</string>
     <string name="vote_average">vote_average</string>
-    <string name="delimiter">/10</string>
     <string name="over_view">overView</string>
-    <string name="poster_path">poster_path</string>
+    <string name="out_of_ten">/10</string>
+    <string name="delimiter">"-"</string>
+    <string name="image_path">http://image.tmdb.org/t/p/w185/</string>
 
 </resources>
