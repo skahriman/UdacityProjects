@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class NetworkUtils {
+public final class NetworkUtils {
 
     final private static String PARAM_API_KEY = "api_key";
     //TODO remove this api key when you publish your app
@@ -17,6 +17,8 @@ public class NetworkUtils {
 
     final private static String BASE_URL = "https://api.themoviedb.org/3/discover/movie";
     final private static String BASE_SORT_URL = "https://api.themoviedb.org/3/movie";
+
+    private NetworkUtils() {}
 
     public static URL buildUrl() throws MalformedURLException {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()

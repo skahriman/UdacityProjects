@@ -1,4 +1,4 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.activity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.adapter.RecyclerViewAdapter;
 import com.example.android.popularmovies.data.Movie;
 import com.example.android.popularmovies.utils.MovieDataJsonUtils;
@@ -16,8 +17,12 @@ import com.example.android.popularmovies.utils.NetworkUtils;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
+
+    @BindView(R.id.rv_recyclerView) RecyclerView mRecyclerView;
     private GridLayoutManager gridLayoutManager;
 
     @Override
@@ -25,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRecyclerView = findViewById(R.id.rv_recyclerView);
+        ButterKnife.bind(this);
+
         gridLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 

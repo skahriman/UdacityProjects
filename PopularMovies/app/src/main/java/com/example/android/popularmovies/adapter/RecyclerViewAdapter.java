@@ -10,11 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.android.popularmovies.DetailsActivity;
+import com.example.android.popularmovies.activity.DetailsActivity;
 import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.data.Movie;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
@@ -62,11 +65,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        final private ImageView image;
+        @BindView(R.id.iv_image) ImageView image;
 
         private ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.iv_image);
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
 

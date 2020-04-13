@@ -1,4 +1,4 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.popularmovies.R;
 import com.squareup.picasso.Picasso;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class DetailsActivity extends AppCompatActivity {
     private static final String TAG = "DetailsActivity";
+
+    @BindView(R.id.tv_title) TextView title;
+    @BindView(R.id.iv_image_detail) ImageView image;
+    @BindView(R.id.tv_releaseDate) TextView releaseDate;
+    @BindView(R.id.tv_voteAverage) TextView voteAverage;
+    @BindView(R.id.tv_overView) TextView overView;
 
     public DetailsActivity() {
         super();
@@ -20,13 +30,9 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        Intent intent = getIntent();
+        ButterKnife.bind(this);
 
-        TextView title = findViewById(R.id.tv_title);
-        ImageView image = findViewById(R.id.iv_image_detail);
-        TextView releaseDate = findViewById(R.id.tv_releaseDate);
-        TextView voteAverage = findViewById(R.id.tv_voteAverage);
-        TextView overView = findViewById(R.id.tv_overView);
+        Intent intent = getIntent();
 
         title.setText(intent.getStringExtra(getString(R.string.title)));
         String image_path = this.getApplicationContext().getString(R.string.image_path)
