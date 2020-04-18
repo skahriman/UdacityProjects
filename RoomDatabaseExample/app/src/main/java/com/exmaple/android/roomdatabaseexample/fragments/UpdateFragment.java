@@ -1,4 +1,4 @@
-package com.exmaple.android.roomdatabaseexample;
+package com.exmaple.android.roomdatabaseexample.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.exmaple.android.roomdatabaseexample.MainActivity;
+import com.exmaple.android.roomdatabaseexample.R;
+import com.exmaple.android.roomdatabaseexample.User;
 
 
 /**
@@ -36,7 +41,8 @@ public class UpdateFragment extends Fragment {
                 int id = Integer.parseInt(userId.getText().toString());
                 String name = userName.getText().toString();
                 User user = new User(id, name);
-                MainActivity.myAppDatabase.mMyDao().updateUser(user);
+                MainActivity.myAppDatabase.getDao().updateUser(user);
+                Toast.makeText(getActivity(), "deleted user successfully", Toast.LENGTH_SHORT).show();
             }
         });
 

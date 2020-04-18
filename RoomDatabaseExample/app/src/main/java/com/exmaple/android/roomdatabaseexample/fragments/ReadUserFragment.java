@@ -1,4 +1,4 @@
-package com.exmaple.android.roomdatabaseexample;
+package com.exmaple.android.roomdatabaseexample.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.exmaple.android.roomdatabaseexample.MainActivity;
+import com.exmaple.android.roomdatabaseexample.R;
+import com.exmaple.android.roomdatabaseexample.User;
 
 import java.util.List;
 
@@ -29,7 +33,7 @@ public class ReadUserFragment extends Fragment {
 
         mTextView = view.findViewById(R.id.tv_display_info);
 
-        List<User> users = MainActivity.myAppDatabase.mMyDao().getUsers();
+        List<User> users = MainActivity.myAppDatabase.getDao().getUsers();
         for (User user : users) {
             mTextView.append(Integer.toString(user.getId())+"\n");
             mTextView.append(user.getName()+"\n\n");

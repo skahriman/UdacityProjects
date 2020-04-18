@@ -1,4 +1,4 @@
-package com.exmaple.android.roomdatabaseexample;
+package com.exmaple.android.roomdatabaseexample.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.exmaple.android.roomdatabaseexample.MainActivity;
+import com.exmaple.android.roomdatabaseexample.R;
+import com.exmaple.android.roomdatabaseexample.User;
 
 
 /**
@@ -40,7 +45,8 @@ public class AddUserFragment extends Fragment {
 
                 User user = new User(id, name);
 
-                MainActivity.myAppDatabase.mMyDao().addUser(user);
+                MainActivity.myAppDatabase.getDao().addUser(user);
+                Toast.makeText(getActivity(), "Added a user successfully", Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -1,4 +1,4 @@
-package com.exmaple.android.roomdatabaseexample;
+package com.exmaple.android.roomdatabaseexample.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.exmaple.android.roomdatabaseexample.MainActivity;
+import com.exmaple.android.roomdatabaseexample.R;
 
 
 /**
