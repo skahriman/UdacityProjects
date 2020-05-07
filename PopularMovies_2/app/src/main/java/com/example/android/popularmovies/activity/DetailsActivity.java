@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.adapter.TrailerAdapter;
@@ -56,5 +59,18 @@ public class DetailsActivity extends AppCompatActivity {
         mTrailerAdapter = new TrailerAdapter(trailerUrls);
         trailerRecyclerView.setAdapter(mTrailerAdapter);
         trailerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //TODO: needs to be implemented
+        Toast.makeText(this, "Add this to Favorites", Toast.LENGTH_SHORT).show();
+        return true;
     }
 }
