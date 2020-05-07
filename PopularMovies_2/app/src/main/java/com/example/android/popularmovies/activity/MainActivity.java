@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_recyclerView) RecyclerView mRecyclerView;
+
     private GridLayoutManager gridLayoutManager;
 
     @Override

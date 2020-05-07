@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class MovieDataJsonUtils {
-    public static final String YOUTUBE_URL = "www.youtube.com/watch?v=";
+    public static final String YOUTUBE_URL = "http://www.youtube.com/watch?v=";
     public static Movie[] getMoviesFromJson(String movieJsonString) throws JSONException, IOException {
 
         JSONObject movieJsonData = new JSONObject(movieJsonString);

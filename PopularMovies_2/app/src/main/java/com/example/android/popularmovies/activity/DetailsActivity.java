@@ -3,10 +3,13 @@ package com.example.android.popularmovies.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.popularmovies.R;
+import com.example.android.popularmovies.adapter.TrailerAdapter;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -20,6 +23,9 @@ public class DetailsActivity extends AppCompatActivity {
     @BindView(R.id.tv_releaseDate) TextView releaseDate;
     @BindView(R.id.tv_voteAverage) TextView voteAverage;
     @BindView(R.id.tv_overView) TextView overView;
+
+    @BindView(R.id.rv_trailerRecyclerView) RecyclerView trailerRecyclerView;
+    private TrailerAdapter mTrailerAdapter;
 
     public DetailsActivity() {
         super();
@@ -44,5 +50,11 @@ public class DetailsActivity extends AppCompatActivity {
         String delimiter = getString(R.string.out_of_ten);
         String average = intent.getStringExtra(vote_average) + delimiter;
         voteAverage.setText(average);
+
+        String[] trailerUrls = intent.getStringArrayExtra(getString(R.string.listOfTrailsers));
+
+        mTrailerAdapter = new TrailerAdapter(trailerUrls);
+        trailerRecyclerView.setAdapter(mTrailerAdapter);
+        trailerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

@@ -12,5 +12,6 @@
     <string name="out_of_ten">/10</string>
     <string name="delimiter">"-"</string>
     <string name="image_path">http://image.tmdb.org/t/p/w185/</string>
+    <string name="listOfTrailsers">listOfUrls</string>
 
 </resources>

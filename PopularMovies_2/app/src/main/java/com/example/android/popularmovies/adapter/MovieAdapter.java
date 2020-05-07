@@ -33,7 +33,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater
                 .from(viewGroup.getContext())
-                .inflate(R.layout.item_list, viewGroup, false);
+                .inflate(R.layout.movie_item_list, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -85,6 +85,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             String year = (release_date.split(context.getString(R.string.delimiter)))[0];
             String vote_average = movie.getVote_average();
             String overView = movie.getOverview();
+            String[] urlForTrailers = movie.getUrlForTrailers();
 
             Intent intent = new Intent(view.getContext(), DetailsActivity.class);
 
@@ -93,6 +94,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             intent.putExtra(context.getString(R.string.release_date), year);
             intent.putExtra(context.getString(R.string.vote_average), vote_average);
             intent.putExtra(context.getString(R.string.over_view), overView);
+            intent.putExtra(context.getString(R.string.listOfTrailsers), urlForTrailers);
+
             view.getContext().startActivity(intent);
         }
     }

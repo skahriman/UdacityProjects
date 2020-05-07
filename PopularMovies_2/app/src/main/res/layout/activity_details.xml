@@ -51,6 +51,25 @@
             android:layout_margin="5dp"
             android:textSize="15sp" />
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_overView"/>
+
+        <TextView
+            android:layout_below="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="Trailers"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_trailerRecyclerView"
+            android:layout_below="@id/view"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
