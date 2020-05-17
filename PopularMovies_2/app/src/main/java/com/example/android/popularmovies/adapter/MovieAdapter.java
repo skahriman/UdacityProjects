@@ -24,8 +24,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     final private Movie[] movies;
 
-    public MovieAdapter(Movie[] images) {
-        this.movies = images;
+    public MovieAdapter(Movie[] movies) {
+        this.movies = movies;
     }
 
     @NonNull
@@ -79,9 +79,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             Context context = view.getContext();
 
             Movie movie = movies[adapterPosition];
+            
+            String id = movie.getId();
             String title = movie.getTitle();
-            String poster_path = movie.getPoster_path();
             String release_date = movie.getRelease_date();
+            String backdrop_path = movie.getBackdrop_path();
+            String poster_path = movie.getPoster_path();
             String year = (release_date.split(context.getString(R.string.delimiter)))[0];
             String vote_average = movie.getVote_average();
             String overView = movie.getOverview();
@@ -89,12 +92,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
             Intent intent = new Intent(view.getContext(), DetailsActivity.class);
 
+            intent.putExtra(context.getString(R.string.id), id);
             intent.putExtra(context.getString(R.string.title), title);
-            intent.putExtra(context.getString(R.string.backdrop_path), poster_path);
             intent.putExtra(context.getString(R.string.release_date), year);
+            intent.putExtra(context.getString(R.string.backdrop_path), backdrop_path);
+            intent.putExtra(context.getString(R.string.poster_path), poster_path);
             intent.putExtra(context.getString(R.string.vote_average), vote_average);
             intent.putExtra(context.getString(R.string.over_view), overView);
-            intent.putExtra(context.getString(R.string.listOfTrailsers), urlForTrailers);
+            intent.putExtra(context.getString(R.string.listOfTrailers), urlForTrailers);
 
             view.getContext().startActivity(intent);
         }

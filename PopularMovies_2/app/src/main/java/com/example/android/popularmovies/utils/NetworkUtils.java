@@ -1,7 +1,6 @@
 package com.example.android.popularmovies.utils;
 
 import android.net.Uri;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +11,6 @@ import java.util.Scanner;
 
 public final class NetworkUtils {
 
-    private static final String TAG = "NetworkUtils";
     final private static String PARAM_API_KEY = "api_key";
     //TODO remove this api key when you publish your app
     final private static String PARAM_API_VALUE = "3ba8d51a5df2e04fe0ffedf1e9a8eec4";
@@ -50,7 +48,6 @@ public final class NetworkUtils {
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
-
             InputStream in = urlConnection.getInputStream();
 
             Scanner scanner = new Scanner(in);
@@ -62,13 +59,8 @@ public final class NetworkUtils {
             } else {
                 return null;
             }
-        }
-        catch (Exception e) {
-            Log.d(TAG, "getResponseFromHttpUrl: The resource you requested could not be found");
-        }
-        finally {
+        } finally {
             urlConnection.disconnect();
         }
-        return null;
     }
 }

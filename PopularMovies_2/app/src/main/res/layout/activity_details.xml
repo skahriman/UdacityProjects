@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".activity.DetailsActivity">
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".activity.DetailsActivity">
@@ -17,60 +19,82 @@
             android:background="@android:color/darker_gray"
             android:padding="40dp"
             android:textColor="@android:color/white"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_image_detail"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_below="@id/tv_title"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
             android:contentDescription="@string/poster_path"
-            android:paddingTop="5dp" />
+            android:paddingTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <TextView
             android:id="@+id/tv_releaseDate"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/tv_title"
-            android:layout_toEndOf="@id/iv_image_detail"
-            android:textSize="30sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="40dp"
+            android:hint="year"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@id/iv_image_detail"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <TextView
             android:id="@+id/tv_voteAverage"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_below="@id/tv_releaseDate"
-            android:layout_toEndOf="@id/iv_image_detail"
-            android:textSize="30sp" />
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:hint="rating"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@id/iv_image_detail"
+            app:layout_constraintTop_toBottomOf="@id/tv_releaseDate" />
 
         <TextView
+            android:layout_margin="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:id="@+id/tv_overView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_image_detail"
-            android:layout_margin="5dp"
-            android:textSize="15sp" />
+            android:layout_marginTop="8dp"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_image_detail" />
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/tv_overView"/>
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_overView" />
 
         <TextView
-            android:layout_below="@+id/view"
+            android:paddingLeft="20dp"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Trailers"
             android:textSize="30sp"
-            android:text="Trailers"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_trailerRecyclerView"
-            android:layout_below="@id/view"
-            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

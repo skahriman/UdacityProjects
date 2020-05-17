@@ -1,6 +1,13 @@
 package com.example.android.popularmovies.data;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "movie")
 public class Movie {
+    @PrimaryKey
+    @NonNull
     final private String id;
     final private String title;
     final private String release_date;
@@ -8,9 +15,9 @@ public class Movie {
     final private String poster_path;
     final private String vote_average;
     final private String overview;
-    private String[] urlForTrailers;
+    final private String[] urlForTrailers;
 
-    public Movie(String id, String title, String release_date, String backdrop_path, String poster_path, String vote_average, String overview, String[] urlForTrailers) {
+    public Movie(@NonNull String id, String title, String release_date, String backdrop_path, String poster_path, String vote_average, String overview, String[] urlForTrailers) {
         this.id = id;
         this.title = title;
         this.release_date = release_date;
@@ -21,6 +28,7 @@ public class Movie {
         this.urlForTrailers = urlForTrailers;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
@@ -51,9 +59,5 @@ public class Movie {
 
     public String[] getUrlForTrailers() {
         return urlForTrailers;
-    }
-
-    public void setUrlForTrailers(String[] urlForTrailers) {
-        this.urlForTrailers = urlForTrailers;
     }
 }
