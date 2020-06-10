@@ -13,12 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:fullBackupContent="@xml/backup_descriptor"
-        tools:targetApi="m">
-        <activity android:name="com.example.android.popularmovies.activity.DetailsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.example.android.popularmovies.activity.MainActivity"
-            android:screenOrientation="portrait">
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity android:name="com.example.android.popularmovies.activity.DetailsActivity" />
+        <activity android:name="com.example.android.popularmovies.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
