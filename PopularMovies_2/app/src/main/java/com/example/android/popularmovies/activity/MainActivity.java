@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,6 +22,8 @@ import com.example.android.popularmovies.utils.NetworkUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private GridLayoutManager gridLayoutManager;
     private MovieAdapter adapter;
     private static final String TAG = "MainActivity";
+    private Movie[] mMovies;
+    private final String MOVIES = "movies";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,22 @@ public class MainActivity extends AppCompatActivity {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        new MovieDbQueryTask().execute(url);
+        if (savedInstanceState != null) {
+            ArrayList<Movie> movieArrayList = savedInstanceState.getParcelableArrayList(MOVIES);
+            Movie[] movies = new Movie[movieArrayList.size()];
+            for (int i = 0; i < movieArrayList.size(); i++) {
+                movies[i] = movieArrayList.get(i);
+            }
+            new MovieDbQueryTask().onPostExecute(movies);
+        }
+        else {
+            new MovieDbQueryTask().execute(url);
+        }
+    }
+
+    protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putParcelableArrayList(MOVIES, new ArrayList(Arrays.asList(mMovies)));
     }
 
     @Override
@@ -107,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Movie[] movies) {
             super.onPostExecute(movies);
+            mMovies = movies;
             adapter = new MovieAdapter(movies);
             mRecyclerView.setAdapter(adapter);
         }
